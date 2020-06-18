@@ -38,7 +38,9 @@ function ScreenSource(props) {
         method: 'GET',
         headers: headers,
       });
+      console.log('data : '+data)
       const body = await data.json()
+      console.log('body : '+body)
       setSourceList(body.sources)
     }
 
