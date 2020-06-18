@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import './App.css';
 
-import {provider, Provider} from 'react-redux'
+import {Provider} from 'react-redux'
 import {createStore, combineReducers} from 'redux'
 
 import wishList from './reducers/articles'

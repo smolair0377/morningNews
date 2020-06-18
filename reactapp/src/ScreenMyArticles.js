@@ -56,7 +56,7 @@ function ScreenMyArticles(props) {
   }
 
   var noArticles
-  if(props.myArticles == 0){
+  if(props.myArticles === 0){
     noArticles = <div style={{marginTop:"30px"}}>No Articles</div>
   }
 
@@ -66,8 +66,8 @@ function ScreenMyArticles(props) {
             <Nav/>
 
             <div style={{display:'flex', justifyContent:'center', alignItems:'center'}} className="Banner">
-              <img style={{width:'40px', margin:'10px',cursor:'pointer'}} src='/images/fr.png' onClick={() => filtreLang('fr')} />
-              <img style={{width:'40px', margin:'10px',cursor:'pointer'}} src='/images/uk.png' onClick={() => filtreLang('en')} /> 
+              <img style={{width:'40px', margin:'10px',cursor:'pointer'}} src='/images/fr.png' onClick={() => filtreLang('fr')} alt=''/>
+              <img style={{width:'40px', margin:'10px',cursor:'pointer'}} src='/images/uk.png' onClick={() => filtreLang('en')} alt = ''/> 
             </div>
 
             {noArticles}
