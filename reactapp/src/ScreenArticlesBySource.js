@@ -43,6 +43,7 @@ function ScreenArticlesBySource(props) {
   }
 
   var saveArticle = async article => {
+    
     props.addToWishList(article)
 
     const saveReq = await fetch('/wishlist-article', {

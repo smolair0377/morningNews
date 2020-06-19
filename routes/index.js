@@ -105,22 +105,31 @@ router.post('/wishlist-article', async function(req, res, next){
   var user = await userModel.findOne({token: req.body.token})
 
   if(user != null){
-    var newArticle = new articleModel({
-      title: req.body.name,
-      description: req.body.desc,
-      urlToImage: req.body.img,
-      content: req.body.content,
-      lang: req.body.lang,
-      userId: user._id,
-    })
-
-    var articleSave = await newArticle.save()
-
-    if(articleSave.name){
-      result = true
+    var userArticles = await articleModel.find({userId:user});
+    console.log(userArticles)
+    var filteredArticles = userArticles.filter((article)=>{
+     return (article.title === req.body.name);
+    });
+    console.log(req.body.name)
+    console.log(filteredArticles)
+    if(filteredArticles.length <1){
+      var newArticle = new articleModel({
+        title: req.body.name,
+        description: req.body.desc,
+        urlToImage: req.body.img,
+        content: req.body.content,
+        lang: req.body.lang,
+        userId: user._id,
+      })
+      var articleSave = await newArticle.save()
+      if(articleSave.name){
+        result = true
+      }
     }
+    else{
+      result = false
+    }    
   }
-
   res.json({result})
 })
 
