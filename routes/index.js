@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var fetch = require('node-fetch');
 
 var uid2 = require('uid2')
 var SHA256 = require('crypto-js/sha256')
@@ -137,6 +138,28 @@ router.delete('/wishlist-article', async function(req,res,next){
 
   res.json({result})
 })
+
+
+router.get('/news', async function(req, res, next){
+  var langue = req.query.language;
+  var country = req.query.country;
+  const data = await fetch(`https://newsapi.org/v2/sources?language=${langue}&country=${country}&apiKey=3af4856608034437b4a20325f4d35731`);
+  const body = await data.json()
+  var sources = body.sources;
+  res.json({sources});
+
+})
+
+router.get('/articles', async function(req, res, next){
+  var sources = req.query.sources;
+  //const data = await fetch(`https://newsapi.org/v2/sources?language=${langue}&country=${country}&apiKey=3af4856608034437b4a20325f4d35731`);
+  const data = await fetch(`https://newsapi.org/v2/top-headlines?sources=${sources}&apiKey=189771adbd2f40d4a27117edd90ff089`)
+  const body = await data.json()
+  var articles = body.articles;
+  res.json({articles});
+
+})
+
 
 
 router.get('/wishlist-article', async function(req,res,next){

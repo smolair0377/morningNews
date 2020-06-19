@@ -32,12 +32,7 @@ function ScreenSource(props) {
         country = 'us'
       }
       props.changeLang(selectedLang)
-      var headers = new Headers();
-      headers.append('Upgrade','HTTP/3.0');
-      const data = await fetch(`https://newsapi.org/v2/sources?language=${langue}&country=${country}&apiKey=3af4856608034437b4a20325f4d35731`,{
-        method: 'GET',
-        headers: headers,
-      });
+      const data = await fetch(`/news?language=${langue}&country=${country}`);
       console.log('data : '+JSON.stringify(data))
       const body = await data.json()
       console.log('body : '+JSON.stringify(body))
