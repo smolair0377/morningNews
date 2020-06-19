@@ -1,6 +1,8 @@
 export default function(wishList = [], action){
-
-    if(action.type === 'saveArticles'){
+    if(action.type === 'resetStore'){
+        return []
+    }
+    else if(action.type === 'saveArticles'){
         return action.articles
     } else if(action.type === 'addArticle'){
         var wishListCopy = [...wishList]

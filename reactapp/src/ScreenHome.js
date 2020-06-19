@@ -18,6 +18,10 @@ function ScreenHome(props) {
   const [listErrorsSignin, setErrorsSignin] = useState([])
   const [listErrorsSignup, setErrorsSignup] = useState([])
 
+  React.useEffect(()=>{
+    props.resetStore();
+  },[])
+
   var handleSubmitSignup = async () => {
     
     const data = await fetch('/sign-up', {
@@ -111,6 +115,9 @@ function mapDispatchToProps(dispatch){
   return {
     addToken: function(token){
       dispatch({type: 'addToken', token: token})
+    },
+    resetStore: function(){
+      dispatch({type: 'resetStore'})
     }
   }
 }
